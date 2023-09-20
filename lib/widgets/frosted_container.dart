@@ -8,12 +8,13 @@ class FrostedWidget extends StatelessWidget {
   final Widget childW;
   final double height;
   final double width;
-  const FrostedWidget(
-      {super.key,
-      this.height = 150,
-      this.width = 200,
-      required this.childW,
-      this.onPressed});
+  const FrostedWidget({
+    super.key,
+    this.height = 150,
+    this.width = 200,
+    required this.childW,
+    this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {

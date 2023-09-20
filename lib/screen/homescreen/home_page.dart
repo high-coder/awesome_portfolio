@@ -20,20 +20,24 @@ class HomePage extends StatelessWidget {
       body: Container(
         child: Stack(
           children: [
-            Container(
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                // end: Alignment(0, -0.4),
-                colors: [Colors.blue, Colors.black45],
-              )),
+            Selector<CurrentState, Gradient>(
+              selector: (context, provider) => provider.bgGradient,
+              builder: (context, _, __) {
+                return Container(
+                  decoration: BoxDecoration(gradient: currentState.bgGradient),
+                );
+              },
             ),
-            SvgPicture.asset(
-              "assets/images/cloudyBlue.svg",
-              // width: double.infinity,
-              height: size.height,
-              fit: BoxFit.cover,
-            ),
+            Selector<CurrentState, String>(
+                selector: (context, provider) => provider.selectedCloud,
+                builder: (context, _, __) {
+                  return SvgPicture.asset(
+                    currentState.selectedCloud,
+                    // width: double.infinity,
+                    height: size.height,
+                    fit: BoxFit.cover,
+                  );
+                }),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -43,42 +47,6 @@ class HomePage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Column(
-                      children: [
-                        FrostedWidget(
-                          height: 395,
-                          width: 247.5,
-                          childW: Center(
-                            child: SizedBox(),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        FrostedWidget(
-                          childW: Center(),
-                          height: 175.5,
-                          width: 245,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: size.height - 100,
-                      child: Selector<CurrentState, DeviceInfo>(
-                          selector: (context, provider) =>
-                              provider.currentDevice,
-                          builder: (context, _, __) {
-                            return DeviceFrame(
-                              device: currentState.currentDevice,
-                              screen: const Center(
-                                child: Text(
-                                  "Hello World",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            );
-                          }),
-                    ),
                     Column(
                       children: [
                         const FrostedWidget(
@@ -89,7 +57,78 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 10,
+                        ),
+                        FrostedWidget(
+                          width: 247.5,
+                          height: 175.5,
+                          childW: Container(),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: size.height - 100,
+                      child: Selector<CurrentState, DeviceInfo>(
+                        selector: (context, provider) => provider.currentDevice,
+                        builder: (context, _, __) {
+                          return DeviceFrame(
+                            device: currentState.currentDevice,
+                            screen: const Center(
+                              child: Text(
+                                "Hello World",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        FrostedWidget(
+                          height: 395,
+                          width: 247.5,
+                          childW: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Wrap(
+                                children: [
+                                  ...List.generate(
+                                    colorPalette.length,
+                                    (index) => Consumer<CurrentState>(
+                                        builder: (context, _, __) {
+                                      return Container(
+                                        width: 52.5,
+                                        height: 52.5,
+                                        margin: const EdgeInsets.all(10),
+                                        child: CustomButton(
+                                          // margin: const EdgeInsets.all(10),
+                                          pressed: currentState.selectedColor ==
+                                                  index
+                                              ? Pressed.pressed
+                                              : Pressed.notPressed,
+                                          animate: true,
+                                          borderRadius: 100,
+                                          shadowColor: Colors.blueGrey[50],
+                                          isThreeD: true,
+                                          backgroundColor:
+                                              colorPalette[index].color,
+                                          width: 50,
+                                          height: 50,
+                                          onPressed: () {
+                                            currentState.changeGradient(index);
+                                          },
+                                        ),
+                                      );
+                                    }),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
                         ),
                         FrostedWidget(
                           width: 247.5,
