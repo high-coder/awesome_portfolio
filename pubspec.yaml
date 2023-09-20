@@ -37,6 +37,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   device_frame: ^1.1.0
   flutter_svg: ^2.0.7
+  google_fonts: ^6.0.0
+  custom_button_builder: ^0.0.1
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:

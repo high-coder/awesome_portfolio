@@ -1,6 +1,7 @@
+import 'package:awesome_portfolio/providers/current_state.dart';
+import 'package:awesome_portfolio/screen/homescreen/home_page.dart';
 import 'package:flutter/material.dart';
-
-import 'screen/homescreen/home_page.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const Portfolio());
@@ -11,8 +12,11 @@ class Portfolio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (context) => CurrentState())],
+      child: const MaterialApp(
+        home: HomePage(),
+      ),
     );
   }
 }
