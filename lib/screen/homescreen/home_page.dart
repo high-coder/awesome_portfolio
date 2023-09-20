@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
+import '../../widgets/frosted_container.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -41,6 +43,25 @@ class HomePage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const Column(
+                      children: [
+                        FrostedWidget(
+                          height: 395,
+                          width: 247.5,
+                          childW: Center(
+                            child: SizedBox(),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        FrostedWidget(
+                          childW: Center(),
+                          height: 175.5,
+                          width: 245,
+                        ),
+                      ],
+                    ),
                     SizedBox(
                       height: size.height - 100,
                       child: Selector<CurrentState, DeviceInfo>(
@@ -57,7 +78,26 @@ class HomePage extends StatelessWidget {
                               ),
                             );
                           }),
-                    )
+                    ),
+                    Column(
+                      children: [
+                        const FrostedWidget(
+                          height: 395,
+                          width: 247.5,
+                          childW: Center(
+                            child: SizedBox(),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        FrostedWidget(
+                          width: 247.5,
+                          height: 175.5,
+                          childW: Container(),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
                 const SizedBox(
