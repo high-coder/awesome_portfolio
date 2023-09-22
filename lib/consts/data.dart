@@ -1,7 +1,9 @@
+import 'package:awesome_portfolio/models/app_model.dart';
 import 'package:awesome_portfolio/models/color_model.dart';
 import 'package:awesome_portfolio/models/deviceModel.dart';
 import 'package:device_frame/device_frame.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 List<DeviceModel> devices = [
   DeviceModel(
@@ -75,3 +77,32 @@ List<ColorModel> colorPalette = [
     ),
   ),
 ];
+
+List<AppModel> apps = [
+  AppModel(title: "About", color: Colors.white, icon: Icons.ac_unit_rounded),
+  AppModel(title: "Skills", color: Colors.white, icon: Icons.ac_unit_rounded),
+  AppModel(title: "Youtube", color: Colors.white, icon: Icons.ac_unit_rounded),
+  AppModel(title: "LinkedIn", color: Colors.white, icon: FontAwesomeIcons.a),
+  AppModel(
+      title: "Experience", color: Colors.white, icon: Icons.ac_unit_rounded),
+  AppModel(
+      title: "Education", color: Colors.white, icon: Icons.ac_unit_rounded),
+  AppModel(title: "Github", color: Colors.white, icon: Icons.ac_unit_rounded),
+  AppModel(
+      title: "Play Store", color: Colors.white, icon: Icons.ac_unit_rounded),
+  AppModel(
+      title: "Play Store", color: Colors.white, icon: Icons.ac_unit_rounded),
+];
+
+const String youtubeChannel = "https://www.youtube.com/@highcoder";
+const String linkedIn = "https://www.linkedin.com/in/high-coder/";
+const String github = "https://github.com/high-coder";
+const String twitter = "https://twitter.com/highcoder__";
+const String topMate = "https://topmate.io/highcoder";
+const String resumeLink =
+    "https://drive.google.com/file/d/1LO3Km6fFkJVW92MNXRLSYl--E9YlTHJd/view";
+const String email = "deepakmittal941@gmail.com";
+String introduction =
+    "Welcome to my portfolio website, this website is highly inspired(almost copied) from Pawan Kumar.\n\nI am a Developer with 3 years of experience in flutter. Worked in many startups most recently worked with Stimuler an application that helps prepare students for Ielts and other english exams.\n\nWhen i am not developing I am mainly watching some movies or series or making stuff on Youtube or just watching fireship";
+const String playApps =
+    "https://play.google.com/store/apps/developer?id=AppyMonk";

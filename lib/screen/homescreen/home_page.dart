@@ -4,6 +4,7 @@ import 'package:custom_button_builder/custom_button_builder.dart';
 import 'package:device_frame/device_frame.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../widgets/frosted_container.dart';
@@ -17,165 +18,238 @@ class HomePage extends StatelessWidget {
         Provider.of<CurrentState>(context, listen: false);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
-        child: Stack(
-          children: [
-            Selector<CurrentState, Gradient>(
-              selector: (context, provider) => provider.bgGradient,
+      body: Stack(
+        children: [
+          Selector<CurrentState, Gradient>(
+            selector: (context, provider) => provider.bgGradient,
+            builder: (context, _, __) {
+              return Container(
+                decoration: BoxDecoration(gradient: currentState.bgGradient),
+              );
+            },
+          ),
+          Selector<CurrentState, String>(
+              selector: (context, provider) => provider.selectedCloud,
               builder: (context, _, __) {
-                return Container(
-                  decoration: BoxDecoration(gradient: currentState.bgGradient),
+                return SvgPicture.asset(
+                  currentState.selectedCloud,
+                  // width: double.infinity,
+                  height: size.height,
+                  fit: BoxFit.cover,
                 );
-              },
-            ),
-            Selector<CurrentState, String>(
-                selector: (context, provider) => provider.selectedCloud,
-                builder: (context, _, __) {
-                  return SvgPicture.asset(
-                    currentState.selectedCloud,
-                    // width: double.infinity,
-                    height: size.height,
-                    fit: BoxFit.cover,
-                  );
-                }),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
-                      children: [
-                        const FrostedWidget(
-                          height: 395,
-                          width: 247.5,
-                          childW: Center(
-                            child: SizedBox(),
+              }),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  /// Left side frosted Containers
+                  Column(
+                    children: [
+                      const FrostedWidget(
+                        height: 395,
+                        width: 247.5,
+                        childW: Center(
+                          child: SizedBox(),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      FrostedWidget(
+                        width: 247.5,
+                        height: 175.5,
+                        childW: Container(),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(
+                    height: size.height - 100,
+                    child: Selector<CurrentState, DeviceInfo>(
+                      selector: (context, provider) => provider.currentDevice,
+                      builder: (context, _, __) {
+                        return DeviceFrame(
+                          device: currentState.currentDevice,
+                          screen: Selector<CurrentState, Gradient>(
+                            selector: (context, provider) =>
+                                provider.bgGradient,
+                            builder: (context, _, child) {
+                              return Container(
+                                // color: Colors.blue,
+                                decoration: BoxDecoration(
+                                    gradient: currentState.bgGradient),
+                                padding: const EdgeInsets.only(
+                                    top: 70, left: 20, right: 20),
+                                child: child,
+                              );
+                            },
+                            child: Column(
+                              children: [
+                                Wrap(
+                                  crossAxisAlignment: WrapCrossAlignment.center,
+                                  alignment: WrapAlignment.start,
+                                  children: List.generate(
+                                      apps.length,
+                                      (index) => Container(
+                                            margin: const EdgeInsets.only(
+                                                right: 10,
+                                                top: 10,
+                                                bottom: 20,
+                                                left: 10),
+                                            // width: 70,
+                                            child: Column(
+                                              children: [
+                                                CustomButton(
+                                                  margin: const EdgeInsets.only(
+                                                      bottom: 5),
+                                                  borderRadius: currentState
+                                                              .currentDevice ==
+                                                          Devices.ios.iPhone13
+                                                      ? 8
+                                                      : 100,
+                                                  onPressed: () {},
+                                                  width: 45,
+                                                  height: 45,
+                                                  backgroundColor:
+                                                      apps[index].color,
+                                                  child: Center(
+                                                      child: Icon(
+                                                    apps[index].icon,
+                                                    size: 25,
+                                                    color: Colors.black,
+                                                  )),
+                                                ),
+                                                SizedBox(
+                                                  width: 60,
+                                                  child: Center(
+                                                    child: Text(
+                                                      apps[index].title,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      maxLines: 1,
+                                                      style:
+                                                          GoogleFonts.openSans(
+                                                              fontSize: 11,
+                                                              color:
+                                                                  Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400),
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          )),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        FrostedWidget(
-                          width: 247.5,
-                          height: 175.5,
-                          childW: Container(),
-                        ),
-                      ],
+                        );
+                      },
                     ),
-                    SizedBox(
-                      height: size.height - 100,
-                      child: Selector<CurrentState, DeviceInfo>(
-                        selector: (context, provider) => provider.currentDevice,
-                        builder: (context, _, __) {
-                          return DeviceFrame(
-                            device: currentState.currentDevice,
-                            screen: const Center(
-                              child: Text(
-                                "Hello World",
-                                style: TextStyle(color: Colors.white),
+                  ),
+
+                  /// Right side frosted containers
+                  Column(
+                    children: [
+                      FrostedWidget(
+                        height: 395,
+                        width: 247.5,
+                        childW: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Wrap(
+                              children: [
+                                ...List.generate(
+                                  colorPalette.length,
+                                  (index) => Consumer<CurrentState>(
+                                      builder: (context, _, __) {
+                                    return CustomButton(
+                                      margin: const EdgeInsets.all(10),
+                                      pressed:
+                                          currentState.selectedColor == index
+                                              ? Pressed.pressed
+                                              : Pressed.notPressed,
+                                      animate: true,
+                                      borderRadius: 100,
+                                      shadowColor: Colors.blueGrey[50],
+                                      isThreeD: true,
+                                      backgroundColor:
+                                          colorPalette[index].color,
+                                      width: 50,
+                                      height: 50,
+                                      onPressed: () {
+                                        currentState.changeGradient(index);
+                                      },
+                                    );
+                                  }),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      FrostedWidget(
+                        width: 247.5,
+                        height: 175.5,
+                        childW: Container(),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+
+              /// bottom button for device selection
+              Selector<CurrentState, DeviceInfo>(
+                  selector: (context, p1) => p1.currentDevice,
+                  builder: (context, _, __) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        ...List.generate(devices.length, (index) {
+                          return CustomButton(
+                            pressed: currentState.currentDevice ==
+                                    devices[index].device
+                                ? Pressed.pressed
+                                : Pressed.notPressed,
+                            animate: true,
+                            borderRadius: 100,
+                            isThreeD: true,
+                            backgroundColor: Colors.black,
+                            width: 37.5,
+                            height: 37.5,
+                            onPressed: () {
+                              currentState.changeSelectedDevice(
+                                devices[index].device,
+                              );
+                            },
+                            child: Center(
+                              child: Icon(
+                                devices[index].icon,
+                                color: Colors.white,
+                                size: 25,
                               ),
                             ),
                           );
-                        },
-                      ),
-                    ),
-                    Column(
-                      children: [
-                        FrostedWidget(
-                          height: 395,
-                          width: 247.5,
-                          childW: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Wrap(
-                                children: [
-                                  ...List.generate(
-                                    colorPalette.length,
-                                    (index) => Consumer<CurrentState>(
-                                        builder: (context, _, __) {
-                                      return Container(
-                                        width: 52.5,
-                                        height: 52.5,
-                                        margin: const EdgeInsets.all(10),
-                                        child: CustomButton(
-                                          // margin: const EdgeInsets.all(10),
-                                          pressed: currentState.selectedColor ==
-                                                  index
-                                              ? Pressed.pressed
-                                              : Pressed.notPressed,
-                                          animate: true,
-                                          borderRadius: 100,
-                                          shadowColor: Colors.blueGrey[50],
-                                          isThreeD: true,
-                                          backgroundColor:
-                                              colorPalette[index].color,
-                                          width: 50,
-                                          height: 50,
-                                          onPressed: () {
-                                            currentState.changeGradient(index);
-                                          },
-                                        ),
-                                      );
-                                    }),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        FrostedWidget(
-                          width: 247.5,
-                          height: 175.5,
-                          childW: Container(),
-                        ),
+                        })
                       ],
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Selector<CurrentState, DeviceInfo>(
-                    selector: (context, p1) => p1.currentDevice,
-                    builder: (context, _, __) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          ...List.generate(devices.length, (index) {
-                            return CustomButton(
-                              pressed: currentState.currentDevice ==
-                                      devices[index].device
-                                  ? Pressed.pressed
-                                  : Pressed.notPressed,
-                              animate: true,
-                              borderRadius: 100,
-                              isThreeD: true,
-                              backgroundColor: Colors.black,
-                              width: 37.5,
-                              height: 37.5,
-                              onPressed: () {
-                                currentState.changeSelectedDevice(
-                                    devices[index].device);
-                              },
-                              child: Center(
-                                  child: Icon(devices[index].icon,
-                                      color: Colors.white, size: 25)),
-                            );
-                          })
-                        ],
-                      );
-                    })
-              ],
-            ),
-          ],
-        ),
+                    );
+                  })
+            ],
+          ),
+        ],
       ),
     );
   }
