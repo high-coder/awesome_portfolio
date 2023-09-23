@@ -17,13 +17,6 @@ class _AboutMeState extends State<AboutMe> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    changeOpacity();
-  }
-
-  changeOpacity() async {
-    await Future.delayed(const Duration(milliseconds: 50));
-    opacity = 1;
-    setState(() {});
   }
 
   @override
@@ -36,8 +29,9 @@ class _AboutMeState extends State<AboutMe> {
           margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Container(
             decoration: BoxDecoration(
-                color: const Color(0xfff5f4e7),
-                borderRadius: BorderRadius.circular(15)),
+              color: const Color(0xfff5f4e7),
+              borderRadius: BorderRadius.circular(15),
+            ),
             padding: const EdgeInsets.all(10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

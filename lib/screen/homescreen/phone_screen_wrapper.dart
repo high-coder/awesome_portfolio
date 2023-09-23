@@ -38,7 +38,9 @@ class ScreenWrapper extends StatelessWidget {
                       ),
                       onPressed: () {
                         instance.changePhoneScreen(
-                            const PhoneHomeScreen(), true);
+                          const PhoneHomeScreen(),
+                          true,
+                        );
                       },
                     ),
                   ],
