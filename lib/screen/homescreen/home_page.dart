@@ -24,8 +24,8 @@ class HomePage extends StatelessWidget {
         Provider.of<CurrentState>(context, listen: false);
     Size size = MediaQuery.of(context).size;
     theme.size = MediaQuery.of(context).size;
-    theme.widthRatio = theme.size.width / 1440;
-    theme.heightRatio = theme.size.height / 790;
+    theme.widthRatio = theme.size.width / baseWidth;
+    theme.heightRatio = theme.size.height / baseHeight;
     bool phone = false;
     if (size.width < 800) {
       phone = true;
@@ -141,8 +141,7 @@ class HomePage extends StatelessWidget {
                               alignment: Alignment.topCenter,
                               child: FrostedWidget(
                                 onPressed: () {
-                                  // CurrentState.launchInBrowser(
-                                  //     Uri.parse(topMate));
+                                  currentState.launchInBrowser(topMate);
                                 },
                                 childW: Center(
                                   child: Container(

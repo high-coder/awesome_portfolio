@@ -12,6 +12,9 @@ import '../models/skill_model.dart';
 import '../screen/miniProjects/about/about.dart';
 import '../screen/miniProjects/skills/skills.dart';
 
+const double baseHeight = 790;
+const double baseWidth = 1440;
+
 List<DeviceModel> devices = [
   DeviceModel(
     device: Devices.android.onePlus8Pro,

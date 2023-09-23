@@ -1,16 +1,46 @@
-# awesome_portfolio
 
-"A new Flutter project."
+# Awesome Portfolio
 
-## Getting Started
+Created this website with inspiration from Pawan Sir, later decided to create tutorial of how you can make this website, it is easier than it looks!
+Lets get started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Steps
+This repository contains a series of branches, each representing a step in the development of the website. You can follow these steps to see the website's progression from its initial state to the final product.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+**Step 1: Initial Setup**
+- Branch: `step_01`
+- Description: The starting point of the project. Basic Hello world example inside the device screen
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**Step 2: Adding Structure**
+- Branch: `step_02`
+- Description: Added the background bottom clouds and added gradient
+
+**Step 3: Styling and Design**
+- Branch: `step_03`
+- Description: Added device changing functionality and statemanagement setup using provider
+
+**Step 4: Responsive Design**
+- Branch: `step_04`
+- Description: Added the Frosted Containers
+
+**Step 5: Adding Functionality**
+- Branch: `step_05`
+- Description: Added the colour pallete and theme changing feature of the website
+
+**Step 6: Content Population**
+- Branch: `step_06`
+- Description: Designing the home Screen of the phone, the apps
+
+**Step 7: Performance Optimization**
+- Branch: `step_07`
+- Description: Added screen changing functionality
+
+**Step 8: Final Product**
+- Branch: `step_08`
+- Description: The final version of the website, including tons of changes including adding assets, responsiveness, and giving the frosted containers 3d effect.
+
+You can start from `step_01` and gradually switch to the subsequent branches as you progress through the development. Make sure to check each branch's README or commit messages for specific details on what changes were made in each step.
+
+Feel free to explore the code, contribute, and provide feedback. Enjoy building your project!
+
