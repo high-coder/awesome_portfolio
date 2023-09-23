@@ -5,6 +5,10 @@ import 'package:device_frame/device_frame.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../models/skill_model.dart';
+import '../screen/miniProjects/about/about.dart';
+import '../screen/miniProjects/skills/skills.dart';
+
 List<DeviceModel> devices = [
   DeviceModel(
     device: Devices.android.onePlus8Pro,
@@ -79,19 +83,49 @@ List<ColorModel> colorPalette = [
 ];
 
 List<AppModel> apps = [
-  AppModel(title: "About", color: Colors.white, icon: Icons.ac_unit_rounded),
-  AppModel(title: "Skills", color: Colors.white, icon: Icons.ac_unit_rounded),
-  AppModel(title: "Youtube", color: Colors.white, icon: Icons.ac_unit_rounded),
-  AppModel(title: "LinkedIn", color: Colors.white, icon: FontAwesomeIcons.a),
+  AppModel(
+      title: "About",
+      color: Colors.white,
+      icon: Icons.ac_unit_rounded,
+      screen: const AboutMe()),
+  AppModel(
+      title: "Skills",
+      color: Colors.white,
+      icon: Icons.ac_unit_rounded,
+      screen: const Skills()),
+  AppModel(
+    title: "Youtube",
+    color: Colors.white,
+    icon: Icons.ac_unit_rounded,
+    link: youtubeChannel,
+  ),
+  AppModel(
+    title: "LinkedIn",
+    color: Colors.white,
+    icon: FontAwesomeIcons.a,
+    link: linkedIn,
+  ),
   AppModel(
       title: "Experience", color: Colors.white, icon: Icons.ac_unit_rounded),
   AppModel(
       title: "Education", color: Colors.white, icon: Icons.ac_unit_rounded),
-  AppModel(title: "Github", color: Colors.white, icon: Icons.ac_unit_rounded),
   AppModel(
-      title: "Play Store", color: Colors.white, icon: Icons.ac_unit_rounded),
+    title: "Github",
+    color: Colors.white,
+    icon: Icons.ac_unit_rounded,
+    link: github,
+  ),
   AppModel(
-      title: "Play Store", color: Colors.white, icon: Icons.ac_unit_rounded),
+    title: "Play Store",
+    color: Colors.white,
+    icon: Icons.ac_unit_rounded,
+    link: playApps,
+  ),
+  AppModel(
+    title: "Play Store",
+    color: Colors.white,
+    icon: Icons.ac_unit_rounded,
+  ),
 ];
 
 const String youtubeChannel = "https://www.youtube.com/@highcoder";
@@ -106,3 +140,49 @@ String introduction =
     "Welcome to my portfolio website, this website is highly inspired(almost copied) from Pawan Kumar.\n\nI am a Developer with 3 years of experience in flutter. Worked in many startups most recently worked with Stimuler an application that helps prepare students for Ielts and other english exams.\n\nWhen i am not developing I am mainly watching some movies or series or making stuff on Youtube or just watching fireship";
 const String playApps =
     "https://play.google.com/store/apps/developer?id=AppyMonk";
+
+List<SkillsModel> skills = [
+  SkillsModel(skillName: "Flutter", colorS: Colors.blue, iconPath: "random"),
+  SkillsModel(
+    skillName: "Firebase",
+    colorS: Colors.yellow,
+  ),
+  SkillsModel(
+    skillName: "Github",
+    colorS: Colors.yellow,
+  ),
+  SkillsModel(
+    skillName: "Dart",
+    colorS: Colors.blue,
+  ),
+  SkillsModel(
+    skillName: "Provider",
+    colorS: Colors.orange,
+  ),
+  SkillsModel(
+    skillName: "Riverpod",
+    colorS: Colors.blue,
+  ),
+  SkillsModel(
+    skillName: "CI/CD",
+    colorS: Colors.yellow,
+  ),
+  SkillsModel(
+    skillName: "Code Magic",
+    colorS: Colors.orange,
+  ),
+  SkillsModel(
+    skillName: "Firebase",
+    colorS: Colors.yellow,
+  ),
+  SkillsModel(
+    skillName: "REST API",
+    colorS: Colors.yellow,
+  ),
+];
+
+List<SkillsModel> languages = [
+  SkillsModel(skillName: "Punjabi", colorS: Colors.orange),
+  SkillsModel(skillName: "Hindi", colorS: Colors.black),
+  SkillsModel(skillName: "English", colorS: Colors.blueGrey),
+];

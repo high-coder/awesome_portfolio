@@ -4,10 +4,10 @@ import 'package:custom_button_builder/custom_button_builder.dart';
 import 'package:device_frame/device_frame.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../widgets/frosted_container.dart';
+import 'phone_screen_wrapper.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -70,86 +70,16 @@ class HomePage extends StatelessWidget {
 
                   SizedBox(
                     height: size.height - 100,
-                    child: Selector<CurrentState, DeviceInfo>(
-                      selector: (context, provider) => provider.currentDevice,
+                    child: Consumer<CurrentState>(
+                      // selector: (context, provider) => provider.currentDevice,
                       builder: (context, _, __) {
                         return DeviceFrame(
                           device: currentState.currentDevice,
-                          screen: Selector<CurrentState, Gradient>(
-                            selector: (context, provider) =>
-                                provider.bgGradient,
-                            builder: (context, _, child) {
-                              return Container(
-                                // color: Colors.blue,
-                                decoration: BoxDecoration(
-                                    gradient: currentState.bgGradient),
-                                padding: const EdgeInsets.only(
-                                    top: 70, left: 20, right: 20),
-                                child: child,
-                              );
-                            },
-                            child: Column(
-                              children: [
-                                Wrap(
-                                  crossAxisAlignment: WrapCrossAlignment.center,
-                                  alignment: WrapAlignment.start,
-                                  children: List.generate(
-                                      apps.length,
-                                      (index) => Container(
-                                            margin: const EdgeInsets.only(
-                                                right: 10,
-                                                top: 10,
-                                                bottom: 20,
-                                                left: 10),
-                                            // width: 70,
-                                            child: Column(
-                                              children: [
-                                                CustomButton(
-                                                  margin: const EdgeInsets.only(
-                                                      bottom: 5),
-                                                  borderRadius: currentState
-                                                              .currentDevice ==
-                                                          Devices.ios.iPhone13
-                                                      ? 8
-                                                      : 100,
-                                                  onPressed: () {},
-                                                  width: 45,
-                                                  height: 45,
-                                                  backgroundColor:
-                                                      apps[index].color,
-                                                  child: Center(
-                                                      child: Icon(
-                                                    apps[index].icon,
-                                                    size: 25,
-                                                    color: Colors.black,
-                                                  )),
-                                                ),
-                                                SizedBox(
-                                                  width: 60,
-                                                  child: Center(
-                                                    child: Text(
-                                                      apps[index].title,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      maxLines: 1,
-                                                      style:
-                                                          GoogleFonts.openSans(
-                                                              fontSize: 11,
-                                                              color:
-                                                                  Colors.white,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400),
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          )),
-                                ),
-                              ],
-                            ),
-                          ),
+                          screen: Container(
+                              decoration: BoxDecoration(
+                                  gradient: currentState.bgGradient),
+                              child: ScreenWrapper(
+                                  childG: currentState.currentScreen)),
                         );
                       },
                     ),

@@ -15,5 +15,7 @@ class AppModel {
     required this.color,
     this.assetPath,
     this.icon,
+    this.link,
+    this.screen,
   }) : assert(icon == null || assetPath == null);
 }
